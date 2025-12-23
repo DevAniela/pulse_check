@@ -11,8 +11,13 @@ puts "--- PulseCheck Results ---"
 
 services.each do |url|
     begin
+        start_time = Time.now
         response = Faraday.get(url)
-        puts "[UP] #{url} - Status: #{response.status}"
+        end_time = Time.now
+
+        latency = ((end_time - start_time) * 1000).to_i
+
+        puts "[UP] #{url} - Status: #{response.status} - Latency: #{latency} ms"
     rescue
         puts "[DOWN] #{url} - Could not connect"
     end
