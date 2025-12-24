@@ -2,6 +2,10 @@ require 'faraday'
 require 'sinatra'
 require 'json'
 
+set :protection, false
+set :show_exceptions, false
+set :environment, :test
+
 set :bind, '0.0.0.0'
 
 services = [
